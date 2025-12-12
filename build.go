@@ -99,14 +99,6 @@ func main() {
 			page.Slug = slug
 			page.URL = "/posts/" + slug + "/"
 			page.Type = "article"
-			posts = append(posts, page)
-
-			// Add to category
-			for _, catName := range page.Categories {
-				if cat, ok := categoryMap[strings.ToLower(catName)]; ok {
-					cat.Posts = append(cat.Posts, page)
-				}
-			}
 		}
 
 		if outPath != "" {
@@ -121,6 +113,16 @@ func main() {
 				"Page": page,
 				"Site": site,
 			})
+
+			// Add posts to collection after FullURL is set
+			if templateName == "post" {
+				posts = append(posts, page)
+				for _, catName := range page.Categories {
+					if cat, ok := categoryMap[strings.ToLower(catName)]; ok {
+						cat.Posts = append(cat.Posts, page)
+					}
+				}
+			}
 		}
 
 		return nil
@@ -174,6 +176,18 @@ func main() {
 		"Image":       baseURL + "/images/og-default.png",
 		"Type":        "website",
 	})
+
+	// Generate sitemap
+	var sitemapURLs []string
+	sitemapURLs = append(sitemapURLs, baseURL+"/")
+	sitemapURLs = append(sitemapURLs, baseURL+"/about/")
+	for _, cat := range categories {
+		sitemapURLs = append(sitemapURLs, cat.FullURL)
+	}
+	for _, post := range posts {
+		sitemapURLs = append(sitemapURLs, post.FullURL)
+	}
+	generateSitemap("public/sitemap.xml", sitemapURLs)
 
 	// Copy static assets
 	copyDir("styles", "public/styles")
@@ -261,4 +275,21 @@ func copyFile(src, dst string) {
 	defer out.Close()
 
 	io.Copy(out, in)
+}
+
+func generateSitemap(path string, urls []string) {
+	f, err := os.Create(path)
+	if err != nil {
+		println("Error creating sitemap:", err.Error())
+		return
+	}
+	defer f.Close()
+
+	f.WriteString(`<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/ns/sitemap/0.9">
+`)
+	for _, url := range urls {
+		f.WriteString("  <url>\n    <loc>" + url + "</loc>\n  </url>\n")
+	}
+	f.WriteString("</urlset>\n")
 }
