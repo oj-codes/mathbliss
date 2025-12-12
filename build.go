@@ -164,6 +164,17 @@ func main() {
 		"Type":        "website",
 	})
 
+	// Generate 404 page
+	renderTemplate(tmpl, "404", "public/404.html", map[string]any{
+		"Site":        site,
+		"Title":       "Page Not Found",
+		"Description": "This page doesn't exist.",
+		"URL":         "/404.html",
+		"FullURL":     baseURL + "/404.html",
+		"Image":       baseURL + "/images/og-default.png",
+		"Type":        "website",
+	})
+
 	// Copy static assets
 	copyDir("styles", "public/styles")
 	copyDir("static", "public")
