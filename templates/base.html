@@ -1,49 +1,67 @@
 {{define "head"}}
+{{- $title := .Title -}}
+{{- $description := .Description -}}
+{{- $fullURL := .FullURL -}}
+{{- $image := .Image -}}
+{{- $type := .Type -}}
+{{- if .Page -}}
+    {{- $title = .Page.Title -}}
+    {{- $description = .Page.Description -}}
+    {{- $fullURL = .Page.FullURL -}}
+    {{- $image = .Page.Image -}}
+    {{- $type = .Page.Type -}}
+{{- else if .Category -}}
+    {{- $title = .Category.Title -}}
+    {{- $description = .Category.Description -}}
+    {{- $fullURL = .Category.FullURL -}}
+    {{- $image = .Category.Image -}}
+    {{- $type = .Category.Type -}}
+{{- end -}}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Basic SEO -->
-    <title>{{if .Title}}{{.Title}} | {{end}}mathbliss</title>
-    <meta name="description" content="{{if .Description}}{{.Description}}{{else}}Math explanations that actually make sense.{{end}}">
-    <link rel="canonical" href="{{.FullURL}}">
+    <title>{{if $title}}{{$title}} | {{end}}mathbliss</title>
+    <meta name="description" content="{{if $description}}{{$description}}{{else}}Math explanations that actually make sense.{{end}}">
+    <link rel="canonical" href="{{$fullURL}}">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="{{if .Title}}{{.Title}}{{else}}mathbliss{{end}}">
-    <meta property="og:description" content="{{if .Description}}{{.Description}}{{else}}Math explanations that actually make sense.{{end}}">
-    <meta property="og:type" content="{{if .Type}}{{.Type}}{{else}}website{{end}}">
-    <meta property="og:url" content="{{.FullURL}}">
-    <meta property="og:image" content="{{.Image}}">
+    <meta property="og:title" content="{{if $title}}{{$title}}{{else}}mathbliss{{end}}">
+    <meta property="og:description" content="{{if $description}}{{$description}}{{else}}Math explanations that actually make sense.{{end}}">
+    <meta property="og:type" content="{{if $type}}{{$type}}{{else}}website{{end}}">
+    <meta property="og:url" content="{{$fullURL}}">
+    <meta property="og:image" content="{{$image}}">
     <meta property="og:site_name" content="mathbliss">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{if .Title}}{{.Title}}{{else}}mathbliss{{end}}">
-    <meta name="twitter:description" content="{{if .Description}}{{.Description}}{{else}}Math explanations that actually make sense.{{end}}">
-    <meta name="twitter:image" content="{{.Image}}">
+    <meta name="twitter:title" content="{{if $title}}{{$title}}{{else}}mathbliss{{end}}">
+    <meta name="twitter:description" content="{{if $description}}{{$description}}{{else}}Math explanations that actually make sense.{{end}}">
+    <meta name="twitter:image" content="{{$image}}">
 
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{.Site.BasePath}}/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{.Site.BasePath}}/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{.Site.BasePath}}/favicon-16x16.png">
+    <link rel="manifest" href="{{.Site.BasePath}}/site.webmanifest">
 
     <!-- Fonts & Styles -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="{{.Site.BasePath}}/styles/main.css">
 </head>
 {{end}}
 
 {{define "header"}}
 <header class="site-header">
     <div class="header-inner">
-        <a href="/" class="wordmark">mathbliss</a>
+        <a href="{{.Site.BasePath}}/" class="wordmark">mathbliss</a>
         <nav class="main-nav">
-            <a href="/">Home</a>
-            {{range .Site.Categories}}<a href="/categories/{{.Slug}}/">{{.Name}}</a>{{end}}
-            <a href="/about/">About</a>
+            <a href="{{.Site.BasePath}}/">Home</a>
+            {{range .Site.Categories}}<a href="{{.URL}}">{{.Name}}</a>{{end}}
+            <a href="{{$.Site.BasePath}}/about/">About</a>
         </nav>
         <button class="nav-toggle" aria-label="Toggle navigation">
             <span></span>

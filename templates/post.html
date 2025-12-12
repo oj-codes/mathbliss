@@ -1,7 +1,7 @@
 {{define "post"}}
 <!DOCTYPE html>
 <html lang="en">
-{{template "head" .Page}}
+{{template "head" .}}
 <body>
     {{template "header" .}}
 
@@ -20,7 +20,7 @@
             </div>
 
             <footer class="article-footer">
-                <a href="/" class="back-link">← Back to all posts</a>
+                <a href="{{.Site.BasePath}}/" class="back-link">← Back to all posts</a>
             </footer>
         </article>
     </main>

@@ -14,7 +14,17 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-const baseURL = "https://mathbliss.com"
+var baseURL = "https://mathbliss.com"
+var basePath = "" // e.g., "/mathbliss" for GitHub Pages subdirectory
+
+func init() {
+	if env := os.Getenv("BASE_URL"); env != "" {
+		baseURL = env
+	}
+	if env := os.Getenv("BASE_PATH"); env != "" {
+		basePath = env
+	}
+}
 
 type Category struct {
 	Name        string `yaml:"name"`
@@ -46,6 +56,7 @@ type Page struct {
 // Site holds global data passed to all templates
 type Site struct {
 	BaseURL    string
+	BasePath   string // For prefixing asset paths (e.g., "/mathbliss" for GitHub Pages)
 	Categories []Category
 }
 
@@ -59,14 +70,14 @@ func main() {
 	categoryMap := make(map[string]*Category)
 	for i := range categories {
 		categories[i].Title = categories[i].Name
-		categories[i].URL = "/categories/" + categories[i].Slug + "/"
-		categories[i].FullURL = baseURL + categories[i].URL
+		categories[i].URL = basePath + "/categories/" + categories[i].Slug + "/"
+		categories[i].FullURL = baseURL + "/categories/" + categories[i].Slug + "/"
 		categories[i].Image = baseURL + "/images/og-default.png"
 		categories[i].Type = "website"
 		categoryMap[strings.ToLower(categories[i].Name)] = &categories[i]
 	}
 
-	site := Site{BaseURL: baseURL, Categories: categories}
+	site := Site{BaseURL: baseURL, BasePath: basePath, Categories: categories}
 
 	// Load templates
 	tmpl := template.Must(template.ParseGlob("templates/*.html"))
@@ -90,19 +101,21 @@ func main() {
 		if rel == "about.md" {
 			outPath = "public/about/index.html"
 			templateName = "page"
-			page.URL = "/about/"
+			page.URL = basePath + "/about/"
 			page.Type = "website"
 		} else if strings.HasPrefix(rel, "posts/") {
 			slug := strings.TrimSuffix(filepath.Base(path), ".md")
 			outPath = filepath.Join("public/posts", slug, "index.html")
 			templateName = "post"
 			page.Slug = slug
-			page.URL = "/posts/" + slug + "/"
+			page.URL = basePath + "/posts/" + slug + "/"
 			page.Type = "article"
 		}
 
 		if outPath != "" {
-			page.FullURL = baseURL + page.URL
+			// FullURL is for SEO/canonical - use path without basePath since baseURL includes it
+			pathWithoutBase := strings.TrimPrefix(page.URL, basePath)
+			page.FullURL = baseURL + pathWithoutBase
 			if page.Image == "" {
 				page.Image = baseURL + "/images/og-default.png"
 			} else if strings.HasPrefix(page.Image, "/") {
@@ -160,7 +173,7 @@ func main() {
 		"Site":        site,
 		"Title":       "",
 		"Description": "Math explanations that actually make sense. Plain English guides to calculus and CS math.",
-		"URL":         "/",
+		"URL":         basePath + "/",
 		"FullURL":     baseURL + "/",
 		"Image":       baseURL + "/images/og-default.png",
 		"Type":        "website",
@@ -171,7 +184,7 @@ func main() {
 		"Site":        site,
 		"Title":       "Page Not Found",
 		"Description": "This page doesn't exist.",
-		"URL":         "/404.html",
+		"URL":         basePath + "/404.html",
 		"FullURL":     baseURL + "/404.html",
 		"Image":       baseURL + "/images/og-default.png",
 		"Type":        "website",
