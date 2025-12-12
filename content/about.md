@@ -48,4 +48,4 @@ mathbliss is me processing what I learn by explaining it to others. Teaching is 
 
 Found an error? Have a suggestion? I'd love to hear from you. Learning in public works best as a conversation.
 
-[oj@learnwithoj.com](mailto:oj@learnwithoj.com)
+[mathbliss@proton.me](mailto:mathbliss@proton.me)
