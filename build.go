@@ -193,6 +193,9 @@ func main() {
 	copyDir("styles", "public/styles")
 	copyDir("static", "public")
 
+	// Create .nojekyll for GitHub Pages
+	os.WriteFile("public/.nojekyll", []byte{}, 0644)
+
 	println("Build complete!")
 }
 
