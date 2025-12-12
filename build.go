@@ -14,21 +14,45 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
+type Category struct {
+	Name        string `yaml:"name"`
+	Slug        string `yaml:"slug"`
+	Description string `yaml:"description"`
+	Title       string `yaml:"-"` // Set from Name for template compatibility
+	Posts       []Page `yaml:"-"`
+}
+
 type Page struct {
 	Title       string    `yaml:"title"`
 	Description string    `yaml:"description"`
 	Date        time.Time `yaml:"date"`
 	Course      string    `yaml:"course"`
-	Unit        string    `yaml:"unit"`
+	Unit        int       `yaml:"unit"`
+	Categories  []string  `yaml:"categories"`
 	Slug        string
 	Content     template.HTML
 	URL         string
+}
+
+// Site holds global data passed to all templates
+type Site struct {
+	Categories []Category
 }
 
 func main() {
 	// Clear and recreate public directory
 	os.RemoveAll("public")
 	os.MkdirAll("public", 0755)
+
+	// Load categories config
+	categories := loadCategories("categories.yaml")
+	categoryMap := make(map[string]*Category)
+	for i := range categories {
+		categories[i].Title = categories[i].Name // For template compatibility
+		categoryMap[strings.ToLower(categories[i].Name)] = &categories[i]
+	}
+
+	site := Site{Categories: categories}
 
 	// Load templates
 	tmpl := template.Must(template.ParseGlob("templates/*.html"))
@@ -60,11 +84,21 @@ func main() {
 			page.Slug = slug
 			page.URL = "/posts/" + slug + "/"
 			posts = append(posts, page)
+
+			// Add to category
+			for _, catName := range page.Categories {
+				if cat, ok := categoryMap[strings.ToLower(catName)]; ok {
+					cat.Posts = append(cat.Posts, page)
+				}
+			}
 		}
 
 		if outPath != "" {
 			os.MkdirAll(filepath.Dir(outPath), 0755)
-			renderTemplate(tmpl, templateName, outPath, page)
+			renderTemplate(tmpl, templateName, outPath, map[string]any{
+				"Page": page,
+				"Site": site,
+			})
 		}
 
 		return nil
@@ -75,15 +109,47 @@ func main() {
 		return posts[i].Date.After(posts[j].Date)
 	})
 
+	// Sort category posts by unit (if set) then date
+	for i := range categories {
+		sort.Slice(categories[i].Posts, func(a, b int) bool {
+			pa, pb := categories[i].Posts[a], categories[i].Posts[b]
+			if pa.Unit != pb.Unit {
+				return pa.Unit < pb.Unit
+			}
+			return pa.Date.Before(pb.Date)
+		})
+	}
+
+	// Generate category pages
+	for _, cat := range categories {
+		outPath := filepath.Join("public/categories", cat.Slug, "index.html")
+		os.MkdirAll(filepath.Dir(outPath), 0755)
+		renderTemplate(tmpl, "category", outPath, map[string]any{
+			"Category": cat,
+			"Site":     site,
+		})
+	}
+
 	// Generate index page
 	renderTemplate(tmpl, "home", "public/index.html", map[string]any{
 		"Posts": posts,
+		"Site":  site,
 	})
 
 	// Copy styles directory
 	copyDir("styles", "public/styles")
 
 	println("Build complete!")
+}
+
+func loadCategories(path string) []Category {
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return nil
+	}
+	var categories []Category
+	yaml.Unmarshal(data, &categories)
+	return categories
 }
 
 func parsePage(path string) Page {
