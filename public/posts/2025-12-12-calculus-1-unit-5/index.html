@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integrals · mathbliss</title>
+    <meta name="description" content="The grand finale: how integrals undo derivatives, find totals, and tie the whole course together.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+
+<body>
+    
+<header class="site-header">
+    <div class="header-inner">
+        <a href="/" class="wordmark">mathbliss</a>
+        <nav class="main-nav">
+            <a href="/">Home</a>
+            <a href="/posts/2025-09-25-calculus-1-overview/">Calculus 1</a>
+            <a href="/about/">About</a>
+        </nav>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+</header>
+
+
+    <main class="main-content">
+        <article class="article">
+            <header class="article-header">
+                <time class="article-date" datetime="2025-12-12">December 12, 2025</time>
+                <h1 class="article-title">Integrals</h1>
+                
+                <p class="article-description">The grand finale: how integrals undo derivatives, find totals, and tie the whole course together.</p>
+                
+            </header>
+
+            <div class="article-content prose">
+                <h2>Integrals (undoing derivatives, finding totals, and the grand finale)</h2>
+<p><em>(Calculus 1 - Unit 5)</em></p>
+<h3>The big idea</h3>
+<p>If derivatives answer &quot;how fast is it changing?&quot;, integrals answer &quot;how much did it accumulate?&quot;</p>
+<p>You've been doing this your whole life. Checking your total screen time. Watching your bank balance grow (or shrink). Counting miles on a road trip. These are all accumulation problems.</p>
+<p>Integrals formalize the process. And here's the twist: they turn out to be the reverse of derivatives. That's the punchline of the entire course.</p>
+<h3>Area: where it all starts</h3>
+<p>The integral started as a geometry problem. How do you find the area under a curve?</p>
+<p>For rectangles, easy: base times height. For triangles, half that. But what about the area under y = x² from 0 to 1? There's no formula from geometry class.</p>
+<p>The calculus trick: chop it into thin rectangles. Add up their areas. Make the rectangles thinner and thinner. Take the limit as they become infinitely thin.</p>
+<p>That limiting sum is the integral.</p>
+<h3>Sigma notation (a quick detour)</h3>
+<p>Before we get to integrals, you need to be comfortable with Σ (sigma). It just means &quot;add these up.&quot;</p>
+<p>Σᵢ₌₁ⁿ i means 1 + 2 + 3 + ... + n. The i is a counter. It starts at 1, ends at n, and you sum every value.</p>
+<p>That's it. Fancy notation for addition. You'll see it in the definition of integrals, and it's useful for writing Riemann sums compactly.</p>
+<h3>Riemann sums: the rectangles method</h3>
+<p>Here's how you actually approximate area under a curve.</p>
+<p>Pick an interval [a, b]. Chop it into n pieces. In each piece, pick a point and use the function value there as your rectangle height. Multiply by the width. Add them all up.</p>
+<p>Left Riemann sum: use the left endpoint of each piece.
+Right Riemann sum: use the right endpoint.
+Midpoint sum: use the middle.</p>
+<p>As n gets larger (more, thinner rectangles), all of these approach the same value. That value is the definite integral.</p>
+<p>You probably won't compute many Riemann sums by hand. But understanding that integrals ARE these sums (in the limit) makes everything else make sense.</p>
+<h3>The definite integral</h3>
+<p>The definite integral of f(x) from a to b is written:</p>
+<p>∫ₐᵇ f(x) dx</p>
+<p>It represents the exact area under the curve (with some caveats about negative values, which we'll get to).</p>
+<p>The ∫ is a stretched-out S, for &quot;sum.&quot; The dx reminds you that you're summing up infinitely thin slices of width dx. The a and b are your boundaries.</p>
+<p>This isn't just notation. It's describing a process: slice, multiply, sum, take the limit.</p>
+<h3>When the function goes negative</h3>
+<p>If f(x) dips below the x-axis, the integral counts that area as negative.</p>
+<p>So ∫ₐᵇ f(x) dx gives you the &quot;signed area.&quot; Area above the axis minus area below.</p>
+<p>If you want total area regardless of sign, you need to integrate |f(x)|, or split the integral at the zeros and handle each piece appropriately.</p>
+<p>This isn't a bug. Signed area is often what you want. If velocity goes negative (you're going backwards), the integral of velocity should subtract that distance from your total displacement.</p>
+<h3>Properties of definite integrals</h3>
+<p>Integrals behave nicely.</p>
+<p><strong>Additivity:</strong> ∫ₐᵇ + ∫ᵦᶜ = ∫ₐᶜ. You can break an integral into pieces.</p>
+<p><strong>Reversing limits:</strong> ∫ₐᵇ = -∫ᵦₐ. Flip the bounds, flip the sign.</p>
+<p><strong>Constants pull out:</strong> ∫ₐᵇ c·f(x) dx = c · ∫ₐᵇ f(x) dx.</p>
+<p><strong>Sum/difference:</strong> ∫ₐᵇ [f(x) ± g(x)] dx = ∫ₐᵇ f(x) dx ± ∫ₐᵇ g(x) dx.</p>
+<p>These let you break hard integrals into easier pieces.</p>
+<h3>Antiderivatives: running derivatives backwards</h3>
+<p>An antiderivative of f(x) is any function F(x) whose derivative is f(x). You're undoing differentiation.</p>
+<p>The antiderivative of 2x is x² (because the derivative of x² is 2x). But also x² + 5. Or x² - 17. Any constant works because constants vanish when you differentiate.</p>
+<p>So we write the general antiderivative as F(x) + C, where C is an arbitrary constant. The &quot;+C&quot; matters. Don't forget it.</p>
+<h3>Indefinite integrals</h3>
+<p>The indefinite integral is just notation for &quot;find the antiderivative&quot;:</p>
+<p>∫ f(x) dx = F(x) + C</p>
+<p>No bounds. You're finding a family of functions, not a number.</p>
+<p><strong>Basic rules (reverse the derivative rules):</strong></p>
+<p>∫ xⁿ dx = xⁿ⁺¹/(n+1) + C (as long as n ≠ -1)</p>
+<p>∫ 1/x dx = ln|x| + C</p>
+<p>∫ eˣ dx = eˣ + C</p>
+<p>∫ sin(x) dx = -cos(x) + C</p>
+<p>∫ cos(x) dx = sin(x) + C</p>
+<p>∫ sec²(x) dx = tan(x) + C</p>
+<p>Notice these are just derivative rules read backwards.</p>
+<h3>The Fundamental Theorem of Calculus</h3>
+<p>This is the big one. The theorem that ties the whole course together.</p>
+<p><strong>Part 1:</strong> If you define F(x) = ∫ₐˣ f(t) dt (the integral from a to a variable endpoint), then F'(x) = f(x). The derivative of an integral (with a variable upper limit) gives you back the original function.</p>
+<p><strong>Part 2:</strong> If F is any antiderivative of f, then ∫ₐᵇ f(x) dx = F(b) - F(a).</p>
+<p>Part 2 is the computational workhorse. To evaluate a definite integral, find any antiderivative and plug in the bounds. Subtract. Done.</p>
+<p>No Riemann sums. No limits of infinite series. Just find F, compute F(b) - F(a), and you have your answer.</p>
+<p>This is why antiderivatives matter. This is why we spent Unit 3 learning derivatives. The Fundamental Theorem connects the two big ideas of calculus: instantaneous rate of change and total accumulation.</p>
+<h3>u-substitution: the chain rule in reverse</h3>
+<p>When the function is a composition, you need u-substitution. It's the chain rule, backwards.</p>
+<p>If you see something like ∫ 2x·eˣ² dx, notice that 2x is the derivative of x². Let u = x². Then du = 2x dx. The integral becomes ∫ eᵘ du = eᵘ + C = eˣ² + C.</p>
+<p>The pattern: find an &quot;inside function&quot; whose derivative is also present (maybe off by a constant). Substitute. Integrate. Substitute back.</p>
+<p>This works for powers, trig functions, exponentials. Anywhere you'd use chain rule for derivatives, you'll use u-sub for integrals.</p>
+<p>For definite integrals, you can either convert back to x and use the original bounds, or convert the bounds to u-values and never switch back. Both work.</p>
+<h3>Area between curves</h3>
+<p>What if you want the area between two curves, not just under one?</p>
+<p>If f(x) ≥ g(x) on [a, b], the area between them is:</p>
+<p>∫ₐᵇ [f(x) - g(x)] dx</p>
+<p>Top minus bottom. That's it.</p>
+<p>If the curves cross (intertwine), you need to find where they intersect, split into pieces where one is consistently on top, and add up the areas.</p>
+<p>Draw a picture. Seriously. It helps you see which function is on top in each region.</p>
+<h3>Average value of a function</h3>
+<p>The average value of f(x) on [a, b] is:</p>
+<p>(1/(b-a)) · ∫ₐᵇ f(x) dx</p>
+<p>In words: the integral divided by the length of the interval. Total accumulation divided by the amount of space. Just like averaging grades: sum divided by count.</p>
+<h3>Mean Value Theorem for Integrals</h3>
+<p>If f is continuous on [a, b], there exists some c in [a, b] where:</p>
+<p>f(c) = (1/(b-a)) · ∫ₐᵇ f(x) dx</p>
+<p>Translation: somewhere on the interval, the function actually equals its average value.</p>
+<p>This is the integral version of the MVT you saw in Unit 4. The average is achieved somewhere.</p>
+<h3>Solving differential equations (a preview)</h3>
+<p>If you're given y' = f(x) and an initial condition y(a) = b, you can solve for y by integrating.</p>
+<p>y = ∫ f(x) dx gives you y = F(x) + C. Plug in the initial condition to find C.</p>
+<p>This is a baby differential equation. More complex ones are a whole course. But the idea starts here: derivatives describe rates, integrals recover the original quantities.</p>
+<h3>Approximating integrals numerically</h3>
+<p>Sometimes you can't find an antiderivative. The function is too ugly, or you only have data points, not a formula.</p>
+<p>Approximation methods:</p>
+<p><strong>Left/Right/Midpoint Riemann sums:</strong> What we started with. Choose your points, add up rectangles.</p>
+<p><strong>Trapezoid rule:</strong> Instead of rectangles, use trapezoids. Generally more accurate for the same number of pieces.</p>
+<p><strong>Simpson's rule:</strong> Use parabolas instead of flat tops or straight lines. Even more accurate.</p>
+<p>Computers use these (and fancier versions) all the time. Not every integral has a nice closed form. But every integral can be approximated.</p>
+<h3>Using tables (a practical note)</h3>
+<p>There are tables of integrals. Big books of them. Before computers, this was how people found antiderivatives of complicated functions.</p>
+<p>You can still use them. Recognize the form, look it up, apply it. It's not cheating. It's engineering.</p>
+<hr>
+<h3>For the engineers</h3>
+<h4>SRE examples</h4>
+<p><strong>Integrals in monitoring are everywhere:</strong> Total requests over an hour is the integral of requests per second. Total errors is the integral of error rate. Any &quot;counter&quot; metric is secretly an integral of a rate.</p>
+<p><strong>Area under the curve for SLOs:</strong> SLO burn rate graphs show error rate over time. The area under that curve is your total error budget consumed. When the area exceeds your budget, you've violated the SLO.</p>
+<p><strong>Signed area and net change:</strong> If your queue length rate goes positive (filling) then negative (draining), the integral gives net change. You might process 1000 items total but end up only 50 ahead of where you started.</p>
+<p><strong>Average value for reporting:</strong> &quot;Average CPU utilization over the past week&quot; is exactly the average value formula. Integrate the utilization, divide by the time span.</p>
+<p><strong>Riemann sums are how your monitoring works:</strong> Prometheus, Datadog, whatever you use. It samples at intervals and sums rectangles. When you see &quot;rate over 5 minutes,&quot; that's a Riemann approximation. Smaller intervals = more accurate = more data = more cost. Tradeoffs everywhere.</p>
+<p><strong>Numerical integration for forecasting:</strong> If you're projecting storage growth and all you have is daily snapshots, you're doing numerical integration. Trapezoid rule is often good enough.</p>
+<p><strong>Area between curves for comparison:</strong> How much better was version B than version A? Plot both latency curves over time. The area between them is your total improvement (or regression).</p>
+<p><strong>The Fundamental Theorem for capacity:</strong> If you know your rate of resource consumption (derivative), you can integrate to find total consumption over any period. If you know total consumption at two points, you can work out the average rate between them. The FTC is the bridge.</p>
+<p><strong>u-substitution in log analysis:</strong> If your metric depends on a transformation of another variable (latency as a function of log(requests)), substitution untangles it. The same algebraic pattern applies.</p>
+
+            </div>
+
+            <footer class="article-footer">
+                <a href="/" class="back-link">← Back to all posts</a>
+            </footer>
+        </article>
+    </main>
+
+    
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div class="footer-doodle" aria-hidden="true">
+            <svg viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 30 Q30 10 50 30 T90 30" stroke="currentColor" stroke-width="2" fill="none" opacity="0.4"/>
+                <circle cx="105" cy="20" r="8" stroke="currentColor" stroke-width="2" fill="none" opacity="0.3"/>
+                <text x="103" y="24" font-size="10" fill="currentColor" opacity="0.4">x</text>
+            </svg>
+        </div>
+        <p class="footer-tagline">Math that clicks.</p>
+        <p class="footer-meta">
+            Made by <a href="https://www.learnwithoj.com/" target="_blank" rel="noopener">O.J. Wilcox</a>
+        </p>
+    </div>
+</footer>
+
+
+    <script>
+        document.querySelector('.nav-toggle')?.addEventListener('click', function() {
+            document.querySelector('.main-nav').classList.toggle('is-open');
+            this.classList.toggle('is-active');
+        });
+    </script>
+</body>
+</html>

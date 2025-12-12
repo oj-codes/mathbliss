@@ -51,12 +51,12 @@ func main() {
 
 		if rel == "about.md" {
 			outPath = "public/about/index.html"
-			templateName = "page.html"
+			templateName = "page"
 			page.URL = "/about/"
 		} else if strings.HasPrefix(rel, "posts/") {
 			slug := strings.TrimSuffix(filepath.Base(path), ".md")
 			outPath = filepath.Join("public/posts", slug, "index.html")
-			templateName = "post.html"
+			templateName = "post"
 			page.Slug = slug
 			page.URL = "/posts/" + slug + "/"
 			posts = append(posts, page)
@@ -76,7 +76,7 @@ func main() {
 	})
 
 	// Generate index page
-	renderTemplate(tmpl, "home.html", "public/index.html", map[string]any{
+	renderTemplate(tmpl, "home", "public/index.html", map[string]any{
 		"Posts": posts,
 	})
 

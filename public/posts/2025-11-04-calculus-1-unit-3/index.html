@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Derivatives · mathbliss</title>
+    <meta name="description" content="The math of &#34;how fast is it changing right now?&#34; All the derivative rules, what they mean, and when to use them.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+
+<body>
+    
+<header class="site-header">
+    <div class="header-inner">
+        <a href="/" class="wordmark">mathbliss</a>
+        <nav class="main-nav">
+            <a href="/">Home</a>
+            <a href="/posts/2025-09-25-calculus-1-overview/">Calculus 1</a>
+            <a href="/about/">About</a>
+        </nav>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+</header>
+
+
+    <main class="main-content">
+        <article class="article">
+            <header class="article-header">
+                <time class="article-date" datetime="2025-11-04">November 4, 2025</time>
+                <h1 class="article-title">Derivatives</h1>
+                
+                <p class="article-description">The math of &#34;how fast is it changing right now?&#34; All the derivative rules, what they mean, and when to use them.</p>
+                
+            </header>
+
+            <div class="article-content prose">
+                <h2>Derivatives (the math of &quot;how fast is it changing right now?&quot;)</h2>
+<p><em>(Calculus 1 - Unit 3)</em></p>
+<h3>The big idea</h3>
+<p>A derivative tells you how fast something is changing at a specific instant.</p>
+<p>That's it. All the formulas, all the rules, all the notation: just tools for answering &quot;how fast is this changing right now?&quot;</p>
+<p>You already think this way. When you check if your phone battery will last until you get home, you're estimating a rate of change. When you notice traffic is &quot;getting worse,&quot; you're sensing a derivative. Calculus just gives you the machinery to calculate it precisely.</p>
+<h3>What a derivative actually is</h3>
+<p>Remember limits? Here's where they pay off.</p>
+<p>The derivative of f(x) at a point is the slope of the tangent line at that point. And we find that slope by taking the limit of secant line slopes as the two points get infinitely close together.</p>
+<p>The formal definition looks like this:</p>
+<p>f'(x) = lim(h→0) [f(x+h) - f(x)] / h</p>
+<p>In english: take the slope between x and a nearby point x+h, then see what happens as h shrinks to zero. That limiting slope is your derivative.</p>
+<p>You could calculate every derivative this way. You'd also want to throw your calculator out a window. That's why we have rules.</p>
+<h3>The basic rules (your new best friends)</h3>
+<p>These rules let you skip the limit definition and just write down derivatives directly.</p>
+<p><strong>Power rule:</strong> The derivative of xⁿ is n·xⁿ⁻¹. Bring the exponent down, subtract one from it. The derivative of x³ is 3x². The derivative of x is 1. The derivative of a constant is 0 (flat line, no change).</p>
+<p><strong>Constant multiple:</strong> The derivative of 5f(x) is 5f'(x). Constants just come along for the ride.</p>
+<p><strong>Sum/difference:</strong> The derivative of f(x) + g(x) is f'(x) + g'(x). Differentiate term by term.</p>
+<p>With just these rules, you can handle any polynomial. And that covers a surprising amount of calculus homework.</p>
+<h3>Product and quotient rules (when functions get tangled)</h3>
+<p>What if two functions are multiplied together? You can't just differentiate each piece separately. There's interaction.</p>
+<p><strong>Product rule:</strong> The derivative of f(x)·g(x) is f'(x)·g(x) + f(x)·g'(x).</p>
+<p>In words: derivative of the first times the second, plus the first times the derivative of the second. Some people remember &quot;first d-second plus second d-first.&quot; Whatever works.</p>
+<p><strong>Quotient rule:</strong> The derivative of f(x)/g(x) is [f'(x)·g(x) - f(x)·g'(x)] / [g(x)]².</p>
+<p>In words: low d-high minus high d-low, all over low squared. It's uglier than the product rule. That's just how division is.</p>
+<h3>The chain rule (the real workhorse)</h3>
+<p>Most interesting functions are compositions. Something inside something else. Like sin(x²) or e^(3x) or √(1 + x²).</p>
+<p>The chain rule says: differentiate the outside, leave the inside alone, then multiply by the derivative of the inside.</p>
+<p>For sin(x²): the outside is sin(stuff), its derivative is cos(stuff). The inside is x², its derivative is 2x. So the answer is cos(x²)·2x.</p>
+<p>This rule is everywhere. If you're struggling with derivatives, there's a good chance it's a chain rule issue. When in doubt, ask yourself &quot;is there a function inside another function?&quot; If yes, chain rule.</p>
+<h3>Special functions you'll see constantly</h3>
+<p><strong>Trig functions:</strong></p>
+<ul>
+<li>Derivative of sin(x) is cos(x)</li>
+<li>Derivative of cos(x) is -sin(x)</li>
+<li>Derivative of tan(x) is sec²(x)</li>
+</ul>
+<p>The others follow patterns. Notice sin and cos just cycle into each other (with a sign flip for cosine).</p>
+<p><strong>Exponentials:</strong></p>
+<ul>
+<li>Derivative of eˣ is eˣ. Yes, really. It's its own derivative. This is why e is special.</li>
+<li>Derivative of aˣ (any base) is aˣ·ln(a). The natural log shows up because e is the &quot;natural&quot; base.</li>
+</ul>
+<p><strong>Logarithms:</strong></p>
+<ul>
+<li>Derivative of ln(x) is 1/x. Clean and simple.</li>
+<li>Derivative of log_a(x) is 1/(x·ln(a)). The natural log sneaks in again.</li>
+</ul>
+<h3>Higher-order derivatives</h3>
+<p>The derivative of a derivative is the second derivative. Written f''(x) or d²y/dx².</p>
+<p>If the first derivative is velocity (rate of change of position), the second derivative is acceleration (rate of change of velocity). You can keep going: third derivative, fourth derivative, as many as you want.</p>
+<p>Second derivatives tell you about curvature. Is the function bending up or down? Is the rate of change itself increasing or decreasing?</p>
+<h3>Differentiability: when derivatives don't exist</h3>
+<p>A function has a derivative wherever its graph is &quot;smooth&quot; in a specific way. No sharp corners, no vertical tangent lines, no jumps or holes.</p>
+<p>The classic example: f(x) = |x| at x = 0. The graph makes a sharp V. There's no single tangent line that makes sense there. The slopes from the left and right don't agree. So the derivative doesn't exist at that point.</p>
+<p>If a function isn't continuous at a point, it definitely isn't differentiable there. But the reverse isn't true: continuous doesn't guarantee differentiable. That V shape in |x| is continuous but not differentiable.</p>
+<h3>Tangent line equations</h3>
+<p>Once you have a derivative, you can write the equation of the tangent line at any point.</p>
+<p>You need: the point (a, f(a)) and the slope f'(a). Then it's just point-slope form:</p>
+<p>y - f(a) = f'(a)(x - a)</p>
+<p>This tangent line is the best linear approximation of the function near that point. Which leads to...</p>
+<h3>Linear approximation (derivatives as prediction tools)</h3>
+<p>Near any point, a smooth function looks almost like its tangent line. So if you know f(a) and f'(a), you can estimate f(x) for x close to a:</p>
+<p>f(x) ≈ f(a) + f'(a)(x - a)</p>
+<p>This is shockingly useful. Need √4.1 without a calculator? You know √4 = 2. The derivative of √x is 1/(2√x), which at x=4 is 1/4. So √4.1 ≈ 2 + (1/4)(0.1) = 2.025. The actual value is about 2.0248. Not bad for mental math.</p>
+<p>The &quot;differential&quot; notation (dy = f'(x)dx) is just another way to write this approximation. The change in y is approximately the derivative times the change in x.</p>
+<h3>Implicit differentiation (when y won't cooperate)</h3>
+<p>Sometimes you can't solve for y explicitly. Like x² + y² = 25 (a circle). You can't write y as a single function of x without splitting into top and bottom halves.</p>
+<p>Implicit differentiation handles this. Differentiate both sides with respect to x, treating y as a function of x. Every time you differentiate a y term, tack on a dy/dx (chain rule). Then solve for dy/dx.</p>
+<p>For the circle: 2x + 2y(dy/dx) = 0, so dy/dx = -x/y.</p>
+<p>This gives you slopes on curves you couldn't otherwise handle.</p>
+<h3>Logarithmic differentiation (a clever trick)</h3>
+<p>Some functions are ugly to differentiate directly. Like x^x or complicated products with variable exponents.</p>
+<p>The trick: take the natural log of both sides, use log properties to simplify, differentiate implicitly, then solve for dy/dx.</p>
+<p>Why does this work? Because ln turns products into sums and exponents into coefficients. It untangles things.</p>
+<h3>Related rates (the word problems)</h3>
+<p>Here's where derivatives meet the real world.</p>
+<p>You have two quantities that are both changing over time, and they're related by some equation. You know how fast one is changing. You want to find how fast the other is changing.</p>
+<p>Classic example: A ladder is sliding down a wall. The bottom is moving away from the wall at 2 feet per second. How fast is the top sliding down when the bottom is 6 feet from the wall?</p>
+<p>The setup: x² + y² = L² (Pythagorean theorem, L is ladder length). Differentiate both sides with respect to time t. You get 2x(dx/dt) + 2y(dy/dt) = 0. Plug in what you know, solve for what you don't.</p>
+<p>The key insight: both x and y are functions of time, even if nobody said so explicitly. Everything that's changing needs a chain rule with respect to t.</p>
+<p>These problems are really just implicit differentiation plus paying attention to what's actually varying.</p>
+<h3>Newton's method (finding roots with derivatives)</h3>
+<p>Want to find where f(x) = 0 but can't solve it algebraically? Newton's method gives you a way to get closer and closer.</p>
+<p>Start with a guess x₀. Draw the tangent line there. See where it crosses the x-axis. That's your next guess x₁. Repeat.</p>
+<p>The formula: x_{n+1} = x_n - f(x_n)/f'(x_n)</p>
+<p>Each iteration usually gets you much closer to the root. It can fail (if you start badly or hit a horizontal tangent), but when it works, it works fast.</p>
+<p>This is how calculators actually find square roots and other values. Not magic. Just derivatives and iteration.</p>
+<hr>
+<h3>For the engineers</h3>
+<h4>SRE examples</h4>
+<p><strong>Derivatives in monitoring:</strong> Your monitoring system's &quot;rate&quot; metrics are derivatives. Requests per second is the derivative of total requests. Error rate is the derivative of error count. When you alert on &quot;rate of change,&quot; you're alerting on a derivative.</p>
+<p><strong>Second derivatives for anomaly detection:</strong> If error rate is increasing, that's concerning. If the rate of increase is itself increasing (positive second derivative), that's &quot;things are getting worse faster.&quot; Second derivatives catch acceleration toward failure.</p>
+<p><strong>Chain rule in complex systems:</strong> Latency depends on queue length, which depends on arrival rate, which depends on traffic. To understand how traffic changes affect latency, you're implicitly using chain rule thinking: multiply the rates of change through the chain.</p>
+<p><strong>Linear approximation for capacity planning:</strong> If your system handles 1000 RPS at 50ms latency and the derivative of latency with respect to load is 0.02 ms/RPS at that point, you can estimate that 1100 RPS will give you roughly 50 + 0.02(100) = 52ms. Good enough for planning, fast enough to be useful.</p>
+<p><strong>Related rates in practice:</strong> Your database size is growing. Storage cost depends on size. How fast is cost growing? That's a related rates problem. If size grows at 10GB/month and cost is $0.10/GB, cost grows at $1/month. Simple example, but the pattern scales to complex dependencies.</p>
+<p><strong>Newton's method for optimization:</strong> Finding the load level where response time equals your SLO, or the cache size where hit rate plateaus: these are root-finding problems. Newton's method (or variations of it) is running under the hood of many optimization tools.</p>
+<p><strong>Implicit relationships:</strong> Sometimes you have an equation relating metrics (like Little's Law: L = λW, where L is items in system, λ is arrival rate, W is wait time) and you need to know how one changes when another does. Implicit differentiation handles this without needing to solve for each variable separately.</p>
+
+            </div>
+
+            <footer class="article-footer">
+                <a href="/" class="back-link">← Back to all posts</a>
+            </footer>
+        </article>
+    </main>
+
+    
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div class="footer-doodle" aria-hidden="true">
+            <svg viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 30 Q30 10 50 30 T90 30" stroke="currentColor" stroke-width="2" fill="none" opacity="0.4"/>
+                <circle cx="105" cy="20" r="8" stroke="currentColor" stroke-width="2" fill="none" opacity="0.3"/>
+                <text x="103" y="24" font-size="10" fill="currentColor" opacity="0.4">x</text>
+            </svg>
+        </div>
+        <p class="footer-tagline">Math that clicks.</p>
+        <p class="footer-meta">
+            Made by <a href="https://www.learnwithoj.com/" target="_blank" rel="noopener">O.J. Wilcox</a>
+        </p>
+    </div>
+</footer>
+
+
+    <script>
+        document.querySelector('.nav-toggle')?.addEventListener('click', function() {
+            document.querySelector('.main-nav').classList.toggle('is-open');
+            this.classList.toggle('is-active');
+        });
+    </script>
+</body>
+</html>

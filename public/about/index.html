@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mathbliss</title>
+    <meta name="description" content="Math explanations that actually make sense.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+
+<body>
+    
+<header class="site-header">
+    <div class="header-inner">
+        <a href="/" class="wordmark">mathbliss</a>
+        <nav class="main-nav">
+            <a href="/">Home</a>
+            <a href="/posts/2025-09-25-calculus-1-overview/">Calculus 1</a>
+            <a href="/about/">About</a>
+        </nav>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+</header>
+
+
+    <main class="main-content">
+        <article class="article page-article">
+            <header class="article-header">
+                <h1 class="article-title"></h1>
+            </header>
+
+            <div class="article-content prose">
+                <h2>About</h2>
+<p>I'm Olivia (&quot;O.J.&quot;), a senior SRE and software engineer working on a B.S. in CS. mathbliss is where I write the math explanations I wish existed when I started.</p>
+<p>The idea came from a community college math club. Not the competitive olympiad kind. The kind where we brought snacks, watched movies, helped each other with homework, and talked about math like it was interesting instead of intimidating. That &quot;you belong here&quot; energy stuck with me.</p>
+<p>Most math education has a gatekeeping problem. The concepts aren't that hard. But the explanations are, because textbooks skip steps and professors assume background you don't have. And the stuff you find online either oversimplify or drown you in notation.</p>
+<p>mathbliss is my attempt to fix that.</p>
+<blockquote>
+<p>&quot;If you can't explain it simply, you don't understand it well enough.&quot;</p>
+</blockquote>
+<h2>What's here</h2>
+<p>Plain English explanations of calculus and the math that shows up in computer science. Every concept gets the same treatment. I explain what it actually means and give an everyday example that makes it click. For the engineers out there, I'll show how it connects to systems work.</p>
+<p>I write the way I'd explain something to a coworker. No jargon for its own sake or skipped steps. And I'm honest about when things are tricky.</p>
+<h2>Who this is for</h2>
+<p>Smart people blocked by math's exclusionary language, not by ability.</p>
+<p>Maybe you're at community college. Maybe you came up through a bootcamp or taught yourself to code. Maybe you're back in school after years in industry. Maybe you're an engineer who wants to actually understand the math behind your systems instead of just pattern-matching formulas.</p>
+<p>If you've ever thought &quot;I could get this if someone just explained it clearly,&quot; you're in the right place.</p>
+<h2>How I write</h2>
+<p>I start with the idea in plain English, then show the formal notation. If I can't say it simply, I keep rewriting until I can.</p>
+<p>I don't hide the confusion points. When something is genuinely tricky, I say so. When there's a step that trips everyone up, I call it out. Learning math shouldn't feel like a secret club you weren't invited to.</p>
+<h2>About me</h2>
+<p>I'm the founder of Learn with O.J., and mathbliss is a piece of a bigger project. I'm trying to build a free Khan Academy for adults in tech. The free content stays free. It's funded by the professional services side of my work, like 1:1 mentoring, freelance software engineering, DevOps, and SRE contracts. Check it out here: <a href="https://www.learnwithoj.com/">Learn with O.J.</a></p>
+<p>I've been a senior SRE and software engineer for years, and I'm still finishing a CS degree (eventually a master's). I've been on both sides. The engineer who needs math to actually work and the student wrestling with textbooks that seem designed to confuse.</p>
+<p>mathbliss is me processing what I learn by explaining it to others. Teaching is the best way to find out what you actually understand.</p>
+<h2>Get in touch</h2>
+<p>Found an error? Have a suggestion? I'd love to hear from you. Learning in public works best as a conversation.</p>
+<p><a href="mailto:oj@learnwithoj.com">oj@learnwithoj.com</a></p>
+
+            </div>
+        </article>
+    </main>
+
+    
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div class="footer-doodle" aria-hidden="true">
+            <svg viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 30 Q30 10 50 30 T90 30" stroke="currentColor" stroke-width="2" fill="none" opacity="0.4"/>
+                <circle cx="105" cy="20" r="8" stroke="currentColor" stroke-width="2" fill="none" opacity="0.3"/>
+                <text x="103" y="24" font-size="10" fill="currentColor" opacity="0.4">x</text>
+            </svg>
+        </div>
+        <p class="footer-tagline">Math that clicks.</p>
+        <p class="footer-meta">
+            Made by <a href="https://www.learnwithoj.com/" target="_blank" rel="noopener">O.J. Wilcox</a>
+        </p>
+    </div>
+</footer>
+
+
+    <script>
+        document.querySelector('.nav-toggle')?.addEventListener('click', function() {
+            document.querySelector('.main-nav').classList.toggle('is-open');
+            this.classList.toggle('is-active');
+        });
+    </script>
+</body>
+</html>
