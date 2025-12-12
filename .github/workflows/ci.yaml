@@ -26,13 +26,7 @@ jobs:
         with:
           go-version: "1.21"
 
-      - name: Build site
-        run: go run build.go
-        env:
-          # For GitHub Pages subdirectory (oj-codes.github.io/mathbliss)
-          # Remove these lines once custom domain DNS is working
-          BASE_URL: https://oj-codes.github.io/mathbliss
-          BASE_PATH: /mathbliss
+      - run: go run build.go
 
       - uses: actions/upload-pages-artifact@v3
         with:
