@@ -14,11 +14,17 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
+const baseURL = "https://mathbliss.com"
+
 type Category struct {
 	Name        string `yaml:"name"`
 	Slug        string `yaml:"slug"`
 	Description string `yaml:"description"`
-	Title       string `yaml:"-"` // Set from Name for template compatibility
+	Title       string `yaml:"-"`
+	URL         string `yaml:"-"`
+	FullURL     string `yaml:"-"`
+	Image       string `yaml:"-"`
+	Type        string `yaml:"-"` // "website"
 	Posts       []Page `yaml:"-"`
 }
 
@@ -29,13 +35,17 @@ type Page struct {
 	Course      string    `yaml:"course"`
 	Unit        int       `yaml:"unit"`
 	Categories  []string  `yaml:"categories"`
+	Image       string    `yaml:"image"` // Can be set in frontmatter
 	Slug        string
 	Content     template.HTML
 	URL         string
+	FullURL     string // Absolute URL for SEO
+	Type        string // "article" or "website"
 }
 
 // Site holds global data passed to all templates
 type Site struct {
+	BaseURL    string
 	Categories []Category
 }
 
@@ -48,11 +58,15 @@ func main() {
 	categories := loadCategories("categories.yaml")
 	categoryMap := make(map[string]*Category)
 	for i := range categories {
-		categories[i].Title = categories[i].Name // For template compatibility
+		categories[i].Title = categories[i].Name
+		categories[i].URL = "/categories/" + categories[i].Slug + "/"
+		categories[i].FullURL = baseURL + categories[i].URL
+		categories[i].Image = baseURL + "/images/og-default.png"
+		categories[i].Type = "website"
 		categoryMap[strings.ToLower(categories[i].Name)] = &categories[i]
 	}
 
-	site := Site{Categories: categories}
+	site := Site{BaseURL: baseURL, Categories: categories}
 
 	// Load templates
 	tmpl := template.Must(template.ParseGlob("templates/*.html"))
@@ -77,12 +91,14 @@ func main() {
 			outPath = "public/about/index.html"
 			templateName = "page"
 			page.URL = "/about/"
+			page.Type = "website"
 		} else if strings.HasPrefix(rel, "posts/") {
 			slug := strings.TrimSuffix(filepath.Base(path), ".md")
 			outPath = filepath.Join("public/posts", slug, "index.html")
 			templateName = "post"
 			page.Slug = slug
 			page.URL = "/posts/" + slug + "/"
+			page.Type = "article"
 			posts = append(posts, page)
 
 			// Add to category
@@ -94,6 +110,12 @@ func main() {
 		}
 
 		if outPath != "" {
+			page.FullURL = baseURL + page.URL
+			if page.Image == "" {
+				page.Image = baseURL + "/images/og-default.png"
+			} else if strings.HasPrefix(page.Image, "/") {
+				page.Image = baseURL + page.Image
+			}
 			os.MkdirAll(filepath.Dir(outPath), 0755)
 			renderTemplate(tmpl, templateName, outPath, map[string]any{
 				"Page": page,
@@ -132,12 +154,19 @@ func main() {
 
 	// Generate index page
 	renderTemplate(tmpl, "home", "public/index.html", map[string]any{
-		"Posts": posts,
-		"Site":  site,
+		"Posts":       posts,
+		"Site":        site,
+		"Title":       "",
+		"Description": "Math explanations that actually make sense. Plain English guides to calculus and CS math.",
+		"URL":         "/",
+		"FullURL":     baseURL + "/",
+		"Image":       baseURL + "/images/og-default.png",
+		"Type":        "website",
 	})
 
-	// Copy styles directory
+	// Copy static assets
 	copyDir("styles", "public/styles")
+	copyDir("static", "public")
 
 	println("Build complete!")
 }
