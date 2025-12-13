@@ -39,7 +39,7 @@ Before we get to integrals, you need to be comfortable with Σ (sigma). It just 
 
 Σᵢ₌₁ⁿ i means 1 + 2 + 3 + ... + n. The i is a counter. It starts at 1, ends at n, and you sum every value.
 
-That's it. Fancy notation for addition. You'll see it in the definition of integrals, and it's useful for writing Riemann sums compactly.
+It's fancy notation for addition. You'll see it in the definition of integrals, and it's useful for writing Riemann sums compactly.
 
 ### Riemann sums: the rectangles method
 

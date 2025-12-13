@@ -37,7 +37,7 @@ Road grade signs like "6% grade" are slope. That's literally what they're tellin
 
 ### 2) Circles
 
-A circle is "all points the same distance from a center." That's it. The center is where it lives, the radius is how big it is.
+A circle is "all points the same distance from a center." The center is where it lives, the radius is how big it is.
 
 Think of a compass drawing a circle around a pushpin. The pushpin is the center. The distance to the pencil tip is the radius.
 
@@ -175,7 +175,7 @@ Alarm clock example: if your "alertness over time" graph shifts 2 hours to the r
 
 |x| means "how far x is from zero." Always non-negative.
 
-The basic graph is a V shape. That's it. V for value. (Okay, that's not why it's V-shaped, but it's a decent mnemonic.)
+The basic graph is a V shape. V for value. (Okay, that's not why it's V-shaped, but it's a decent mnemonic.)
 
 "5 miles east" and "5 miles west" are both distance 5 from home. Absolute value doesn't care about direction. Just magnitude.
 

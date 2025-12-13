@@ -19,7 +19,7 @@ _(Calculus 1 - Unit 3)_
 
 A derivative tells you how fast something is changing at a specific instant.
 
-That's it. All the formulas, all the rules, all the notation: just tools for answering "how fast is this changing right now?"
+All the formulas, all the rules, all the notation: just tools for answering "how fast is this changing right now?"
 
 You already think this way. When you check if your phone battery will last until you get home, you're estimating a rate of change. When you notice traffic is "getting worse," you're sensing a derivative. Calculus just gives you the machinery to calculate it precisely.
 

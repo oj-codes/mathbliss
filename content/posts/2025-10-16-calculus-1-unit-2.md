@@ -19,8 +19,6 @@ _(Calculus 1 - Unit 2)_
 
 A limit is just "what value are we heading toward" as we get closer and closer to some point.
 
-That's it.
-
 We're not asking "what's the value at this exact spot." We're asking "what does everything around it suggest it should be?"
 
 ### Instant vs. average: why limits matter
