@@ -11,10 +11,16 @@ go run build.go
 This generates the site in `/public`. Serve it locally with:
 
 ```bash
-python3 -m http.server 8000 --directory public
+static-server public
 ```
 
-Then visit `http://localhost:8000`.
+after installing the static-server package:
+
+```bash
+go install github.com/eliben/static-server@latest
+```
+
+Then visit `http://localhost:8080`.
 
 ## Project structure
 
